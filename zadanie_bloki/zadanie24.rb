@@ -3,13 +3,12 @@ x = gets.to_i
 puts "Druga liczba"
 y = gets.to_i
 
-loop do
+while x != y
   if x > y
-    x = x - y
+    x -= y
   else
-    y = y - x
+    y -= x
   end
-  break if x == y
 end
 
 puts "Najwyższy wspólny dzielnik to: #{x}"

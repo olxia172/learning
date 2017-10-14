@@ -6,7 +6,7 @@ b = gets.to_i
 
 puts " "
 if a >= b
-  puts "#{a}"
+  puts a
 else
-  puts "#{b}"
+  puts b
 end
