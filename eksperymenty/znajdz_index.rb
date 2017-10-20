@@ -1,10 +1,24 @@
+#value = gets.to_i
+
+#array = [7, 2, 4, 2, 1, 5, 6]
+#print array
+#puts ' '
+
 def find_index(array, value)
-  array.each_with_index do |elem, index|
-    if elem == value
-      return index
+  #if array.include?(value)
+
+    index = 0
+    while index < array.size
+      if array[index] == value
+        return index
+      end
+      index += 1
     end
-  end
-  return 'not found'
+    return 'not found'
+
+  #else
+  #  puts 'not found'
+  #end
 end
 
 puts find_index([1, 2, 3, 4, 5], 3)
