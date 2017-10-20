@@ -12,16 +12,18 @@ puts ' 3. Multiply numbers'
 puts ' 4. Divide numbers'
 puts ' 5. Quit'
 
+def popros_o_int(prosba)
+  print prosba
+  return gets.to_i
+end
+
 loop do
-  print 'What is your choice: '
-  wybrana_operacja = gets.to_i
+  wybrana_operacja = popros_o_int('What is your choice? ')
 
   break if wybrana_operacja == QUIT
 
-  print 'Enter first number: '
-  first_number = gets.to_i
-  print 'Enter second number: '
-  second_number = gets.to_i
+  first_number = popros_o_int('Enter first number: ')
+  second_number = popros_o_int('Enter second number: ')
 
   case wybrana_operacja
   when ADDITION
