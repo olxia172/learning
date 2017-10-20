@@ -16,52 +16,33 @@ loop do
   print 'What is your choice: '
   wybrana_operacja = gets.to_i
 
-  if wybrana_operacja == ADDITION
-    print 'Enter first number: '
-    first_number = gets.to_i
-    print 'Enter second number: '
-    second_number = gets.to_i
+  break if wybrana_operacja == QUIT
 
+  print 'Enter first number: '
+  first_number = gets.to_i
+  print 'Enter second number: '
+  second_number = gets.to_i
+
+  case wybrana_operacja
+  when ADDITION
     outcome = first_number + second_number
-    puts "#{first_number} + #{second_number} = #{outcome}"
-  end
-
-  if wybrana_operacja == SUBTRACTION
-    print 'Enter first number: '
-    first_number = gets.to_i
-    print 'Enter second number: '
-    second_number = gets.to_i
-
+    znak = '+'
+  when SUBTRACTION
     outcome = first_number - second_number
-    puts "#{first_number} - #{second_number} = #{outcome}"
-  end
-
-  if wybrana_operacja == MULTIPLICATION
-    print 'Enter first number: '
-    first_number = gets.to_i
-    print 'Enter second number: '
-    second_number = gets.to_i
-
+    znak = '-'
+  when MULTIPLICATION
     outcome = first_number * second_number
-    puts "#{first_number} * #{second_number} = #{outcome}"
-  end
-
-  if wybrana_operacja == DIVISION
-    print 'Enter first number: '
-    first_number = gets.to_i
-    print 'Enter second number: '
-    second_number = gets.to_i
-
+    znak = '*'
+  when DIVISION
     if second_number.zero?
       puts 'Do not divide by 0!'
+      next
     else
       outcome = first_number / second_number
-      puts "#{first_number} / #{second_number} = #{outcome}"
+      znak = '/'
     end
-
   end
-
-  break if wybrana_operacja == QUIT
+  puts "#{first_number} #{znak} #{second_number} = #{outcome}"
 end
 
 puts 'Bye, bye'
