@@ -1,8 +1,8 @@
 def draw_level(padding, start, stop)
   start.step(stop, 2) do |i|
-    print " "*padding
-    print " "*((stop-i)/2)
-    print "*"*i
+    print ' ' * padding
+    print ' ' * ((stop - i) / 2)
+    print '*' * i
     print "\n"
   end
 end

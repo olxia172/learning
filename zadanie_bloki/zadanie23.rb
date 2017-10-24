@@ -4,9 +4,9 @@ sum_u = 0 #suma liczb ujemnych
 loop do
   x = gets.to_i
     if x < 0
-      sum_u = sum_u + x
+      sum_u += x
     elsif x > 0
-      sum_d = sum_d + x
+      sum_d += x
     end
   break if x == 0
 end

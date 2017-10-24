@@ -1,6 +1,6 @@
-x = gets.to_f #x - dystans w km
+dystans = gets.to_f
 
-z = (x*6.5)/100 #z-zużycie paliwa
-k = z*4.3 #k-koszt przejzdu
+zuzycie_paliwa = (dystans * 6.5) / 100
+koszt = zuzycie_paliwa * 4.3
 
-puts "Zużycie paliwa na podany dystans to: #{z}, a koszt: #{k}"
+puts "Zużycie paliwa na podany dystans to: #{zuzycie_paliwa}, a koszt: #{koszt}"

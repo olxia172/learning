@@ -1,4 +1,4 @@
-puts "Podaj trzy liczby:"
+puts 'Podaj trzy liczby:'
 a = gets.to_i
 b = gets.to_i
 c = gets.to_i
@@ -13,5 +13,5 @@ if max < c
   max = c
 end
 
-puts " "
-puts "#{max}"
+puts ' '
+puts max

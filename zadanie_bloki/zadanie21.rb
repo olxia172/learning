@@ -4,8 +4,8 @@ i = 1
 wynik = 1
 
 while i < n
-  i = i + 1
-  wynik = wynik*i
+  i += 1
+  wynik *= i
 end
 
 puts wynik

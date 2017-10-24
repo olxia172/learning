@@ -1,8 +1,8 @@
-puts "Podaj ilość $:"
+puts 'Podaj ilość $: '
 x = gets.to_f
 
-puts "Podaj kurs:"
+puts 'Podaj kurs: '
 y = gets.to_f
 
-k = x*y
+k = x * y
 puts "Koszt w zł wynosi: #{k}"

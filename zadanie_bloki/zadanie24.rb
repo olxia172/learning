@@ -1,6 +1,6 @@
-puts "Pierwsza liczba"
+puts 'Pierwsza liczba'
 x = gets.to_i
-puts "Druga liczba"
+puts 'Druga liczba'
 y = gets.to_i
 
 while x != y

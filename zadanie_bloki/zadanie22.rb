@@ -12,9 +12,9 @@ loop do
 end
 
 if u == true
-  puts "Wystąpiła liczba ujemna"
+  puts 'Wystąpiła liczba ujemna'
 end
 
 if d == true
-  puts "Wystąpiła liczba dodatnia"
+  puts 'Wystąpiła liczba dodatnia'
 end

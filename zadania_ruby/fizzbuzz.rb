@@ -1,9 +1,9 @@
 1.upto(100) do |number|
-  if number % 15 == 0
+  if (number % 15).zero?
     puts 'FizzBuzz'
-  elsif number % 3 == 0
+  elsif (number % 3).zero?
     puts 'Fizz'
-  elsif number % 5 == 0
+  elsif (number % 5).zero?
     puts 'Buzz'
   else
     puts number

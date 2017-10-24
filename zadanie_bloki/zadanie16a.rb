@@ -1,10 +1,10 @@
-puts "Podaj liczbę:"
+puts 'Podaj liczbę:'
 n = gets.to_i
 
 puts "\n"
 
 if n < 1
-  puts "Liczba musi być > 0"
+  puts 'Liczba musi być > 0'
 else
   i = 0
 
