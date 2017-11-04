@@ -1,0 +1,10 @@
+#ustalić system koordynat dla board
+#stworzyć brakujące metody
+#stworzyc klase gameplay rysujaca boarda
+#zintegrowac ShipsOnBoard, zeby tworzylo plansze ze statkami
+#dodanie wiecej jednomsztowcow
+
+
+#pobieranie input od gracza
+#trafiony/pudlo... przetwarzanie akcji od gracza
+#sprawdzenie czy gracz wygrał czy nie
