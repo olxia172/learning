@@ -1,6 +1,3 @@
-require "csv"
-require "pp"
-
 class Products
   def initialize
     @products = []
