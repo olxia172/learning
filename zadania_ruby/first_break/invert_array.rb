@@ -1,7 +1,5 @@
 def invert_array(array)
-  inverted = []
-  array.each { |elem| inverted << (-elem)}
-  inverted
+  array.map { |elem| -elem}
 end
 
 print invert_array([1, 2, 3, 4, 5])

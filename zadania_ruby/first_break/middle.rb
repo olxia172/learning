@@ -1,10 +1,9 @@
 def middle(word)
+  position = word.length / 2
+
   if (word.length % 2).zero?
-    position1 = word.length / 2
-    position2 = (word.length / 2) + 1
-    return word[position1, position2]
+    return word[position, position + 1]
   else
-    position = word.length / 2
     return word[position]
   end
 end
