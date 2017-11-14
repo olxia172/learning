@@ -1,3 +1,6 @@
+#rescue
+  #binding.pry
+
 require "pry"
 
 class Board
@@ -13,19 +16,19 @@ class Board
     create_board
   end
 
-  attr_reader :board, :coordinates
+  attr_reader :board, :coordinates, :columns, :rows
 
   def create_board
     @board = Array.new(10) { Array.new(10, @field_options[:empty_unselected_field])}
   end
 
   def sample_coordinate
-    @first_column = @columns.sample
-    @first_row = @rows.sample
-    @first_coord = @first_column + @first_row.to_s
+    first_column = @columns.sample
+    first_row = @rows.sample
+    first_coord = first_column + first_row.to_s
 
-    if find_coordinate_value(@first_coord).zero? && neighbouring_fields_empty?(@first_coord)
-        return @first_coord
+    if are_fields_empty?(first_coord) && neighbouring_fields_empty?(first_coord)
+      return first_coord
     else
       sample_coordinate
     end
@@ -38,16 +41,21 @@ class Board
 
   def find_coordinate_index(coordinate) # coordinate jest to "A1"
     column_index = @columns.find_index(coordinate[0])
-    row_index = @rows.find_index(coordinate[1].to_i)
+    if coordinate.length == 2
+      positions = 1
+    else
+      positions = 1..2
+    end
+    row_index = @rows.find_index(coordinate[positions].to_i)
     [row_index, column_index]
   end
 
-  def neighbouring_fields_empty?(coordinate)
+  def neighbouring_fields_empty?(coord)
     neighbours_coord = []
-    row_index, column_index = find_coordinate_index(coordinate)
+    row_index, column_index = find_coordinate_index(coord)
+
     i = -1
     while i <= 1
-
       index1 = row_index - 1
       index2 = column_index + i
       if in_bounds(index1, index2)
@@ -68,8 +76,13 @@ class Board
       end
       i += 1
     end
-    neighbours_coord.compact
-    are_neighbours_empty?(neighbours_coord)
+    empty = true
+    i = 0
+    while i < neighbours_coord.size
+      empty = false unless are_fields_empty?(neighbours_coord[i])
+      i += 1
+    end
+    return empty
   end
 
   def in_bounds(index1, index2)
@@ -79,22 +92,16 @@ class Board
   end
 
   def are_fields_empty?(coordinates)
-    coordinates = coordinates[0]
-    if find_coordinate_value(coordinates) == 0
-      true
-    else
-      false
-    end
-  end
-
-  def are_neighbours_empty?(coordinates)
-    fields = []
-    coordinates.each { |coord| fields << find_coordinate_value(coord) }
-    fields.delete(0)
-    if fields.empty?
-      true
-    else
-      false
+    if coordinates.class == String
+      return true if find_coordinate_value(coordinates).zero?
+    elsif coordinates.class == Array
+      empty = true
+      i = 0
+      while i < coordinates.size
+        empty = false unless find_coordinate_value(coordinates[i])
+        i += 1
+      end
+      return empty
     end
   end
 
