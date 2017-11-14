@@ -12,10 +12,21 @@ class ShipsOnBoard
     run
   end
 
-  attr_reader :board
+  attr_reader :board, :ships
+
+  def run
+    2.times { add_onedecker }
+    2.times { add_twodecker }
+    return @board
+  end
 
   def add_onedecker
     ship = OneDecker.new(@board)
+    add_ship(ship)
+  end
+
+  def add_twodecker
+    ship = TwoDecker.new(@board)
     add_ship(ship)
   end
 
@@ -26,11 +37,4 @@ class ShipsOnBoard
     end
   end
 
-  def run
-    4.times { add_onedecker }
-    return @board
-  end
 end
-
-#plansza = ShipsOnBoard.new
-#pp plansza
