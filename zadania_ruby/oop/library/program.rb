@@ -18,10 +18,20 @@ biblioteka.add_new_book(book4)
 biblioteka.add_new_book(book5)
 biblioteka.add_new_book(book6)
 
+#binding.pry
 czytelnik1 = Reader.new('Aleksandra', 'Kucharczyk')
 czytelnik2 = Reader.new('Arkadiusz', 'Buras')
 czytelnik3 = Reader.new('Zbyszek', 'Nowak')
-binding.pry
-biblioteka.add_reader(czytelnik1, czytelnik2, czytelnik3)
+#mam_ksiazke = biblioteka.find('Wiedźmin')
+#czytelnik1.rent_book(mam_ksiazke)
+biblioteka.add_reader(czytelnik1)
+biblioteka.add_reader(czytelnik2)
+biblioteka.add_reader(czytelnik3)
 
+begin
+  biblioteka.rent_book_to_reader('tytul ksiazki', 'imie', 'nazwisko', '2017-05-01')
+rescue Exception => error
+  puts error
+end
+biblioteka.rent_book_to_reader('Wiedźmin', 'Aleksandra', 'Kucharczyk', '2017-02-03')
 puts ''

@@ -1,8 +1,6 @@
-require_relative "./book.rb"
-require_relative "./library.rb"
-
 class Reader
   attr_accessor :card_number, :rented
+  attr_reader :name, :surname
   def initialize(name, surname)
     @name = name
     @surname = surname
@@ -11,10 +9,7 @@ class Reader
     self.card_number = nil
   end
 
-  def rent_book(library, title_or_author, date)
-    book_to_rent = library.all_books_in_library.find do |book|
-      (book.title.downcase || book.author.downcase) == title_or_author.downcase
-    end
+  def rent_book(book_to_rent, date)
     if book_to_rent.avaliable?
       book_to_rent.mark_as_rented
       book_to_rent.book_rental_date(date)
@@ -24,10 +19,7 @@ class Reader
     end
   end
 
-  def return_book(title_or_author, date)
-    book_to_return = rented.find do |book|
-      (book.title.downcase || book.author.downcase) == title_or_author.downcase
-    end
+  def return_book(book_to_return, date)
     if book_to_return
       to_history(book_to_return, date)
       book_to_return.mark_as_avaliable
