@@ -1,3 +1,5 @@
+require "csv"
+
 class Products
   def initialize
     @products = []
@@ -14,10 +16,10 @@ class Products
   end
 
   def find(product)
-    result = nil
     @products.each do |row|
       if row[:name] == product
         result = "#{row[:name]} #{row[:price]}#{row[:currency]}"
+        return result
       end
     end
     result
@@ -45,7 +47,7 @@ class Products
       csv << new_headers
       @products.each do |row|
         new_price = row[:price].to_f / exchange_rate.to_f
-        csv << ["#{row[:name]}", "#{new_price.round(2)}", "#{row[:weight]}"]
+        csv << [row[:name], new_price.round(2), row[:weight]]
       end
     end
   end
