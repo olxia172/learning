@@ -54,6 +54,16 @@ module GamersChoice
   end
 
   def ship_sunk?(coordinate)
+    ship = find_ship_with_coordinate(coordinate)
+
+    if ship.class == OneDecker
+      one_decker_sunk(ship)
+    else
+      more_decker_sunk(ship)
+    end
+  end
+
+  def find_ship_with_coordinate(coordinate)
     index = 0
     ship = nil
     while index < @board.ships.size
@@ -61,15 +71,32 @@ module GamersChoice
       ship = @board.ships[index] if ship_coordinates.include?(coordinate)
       index += 1
     end
+    ship
+  end
 
-    if ship.class == OneDecker
+  def one_decker_sunk(ship)
+    puts 'Hit and sunk!'
+    ship.neighbours.each do |coord|
+      row_index, column_index = find_coordinate_index(coord)
+      @board.board.board[row_index][column_index] = @field_options[:empty_selected_field]
+    end
+  end
+
+  def more_decker_sunk(ship)
+    hit_fields = []
+    ship.coordinates.each do |coord|
+      row_index, column_index = find_coordinate_index(coord)
+      if @board.board.board[row_index][column_index] == @field_options[:filled_selected_field]
+        hit_fields << coord
+      end
+    end
+    if ship.coordinates == hit_fields
       puts 'Hit and sunk!'
       ship.neighbours.each do |coord|
         row_index, column_index = find_coordinate_index(coord)
         @board.board.board[row_index][column_index] = @field_options[:empty_selected_field]
       end
-    else
-      #sprawdz wartosci na tablicy dla coordinates - jesli wszytskie sa 3 to trafiony zatopiony i fill neighbours
     end
+    #sprawdz wartosci na tablicy dla coordinates - jesli wszytskie sa 3 to trafiony zatopiony i fill neighbours
   end
 end
