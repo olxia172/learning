@@ -48,11 +48,11 @@ class Calculator
     add_to_history('change_sign')
   end
 
-  def add_to_history(method, number=nil)
+  def add_to_history(method, number = nil)
     action = {
       method: method,
       number: number,
-      result: self.result
+      result: result
     }
     @history << action
   end
