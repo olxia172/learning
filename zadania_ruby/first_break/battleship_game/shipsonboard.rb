@@ -4,19 +4,22 @@ require_relative "./ship_type/threedecker.rb"
 require_relative "./ship_type/fourdecker.rb"
 require_relative "./board.rb"
 
-require "pry"
 class ShipsOnBoard
+  attr_reader :board, :ships, :all_ships_coordinates
+
   def initialize
     @board = Board.new
     @ships = []
+    @all_ships_coordinates = []
     run
   end
 
-  attr_reader :board, :ships
-
   def run
-    4.times { add_onedecker }
+    1.times { add_fourdecker }
+    2.times { add_threedecker }
     3.times { add_twodecker }
+    4.times { add_onedecker }
+    find_all_ships_coordinates
     return @board
   end
 
@@ -28,6 +31,20 @@ class ShipsOnBoard
   def add_twodecker
     while true
     ship = TwoDecker.new(@board)
+    break if add_ship(ship)
+    end
+  end
+
+  def add_threedecker
+    while true
+    ship = ThreeDecker.new(@board)
+    break if add_ship(ship)
+    end
+  end
+
+  def add_fourdecker
+    while true
+    ship = FourDecker.new(@board)
     break if add_ship(ship)
     end
   end
@@ -47,5 +64,15 @@ class ShipsOnBoard
     else
       return false
     end
+  end
+
+  def find_all_ships_coordinates
+    index = 0
+    while index < @ships.size
+      ship_coordinates = @ships[index].coordinates
+      ship_coordinates.each { |coord| @all_ships_coordinates << coord }
+      index += 1
+    end
+    @all_ships_coordinates
   end
 end

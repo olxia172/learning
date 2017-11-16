@@ -1,49 +1,50 @@
-require_relative "./directions.rb"
+require_relative './directions.rb'
+require_relative './allcoordinates.rb'
 
 class ThreeDecker
-  def initialize
+  include AllCoordinates
+
+  attr_reader :coordinates, :neighbours
+
+  def initialize(board)
     @coordinates = []
-    @board_rows = (1..10).to_a
-    @board_columns = ('A'..'J').to_a
+    @neighbours = []
+    @board = board
+    generate_coordinates
   end
 
-  attr_accessor :coordinates
-
-  def coordinates
-    next_coordinates
-    puts @coordinates
+  def generate_coordinates
+    all_coordinates
+    find_neighbours(@coordinates)
   end
 
-private
+  def all_coordinates
+    first_coord = @board.sample_coordinate
+    @coordinates << first_coord
 
-  def first_coordinate
-    @first_column = @board_columns.sample
-    @first_row = @board_rows.sample
-    @first_coord = @first_column + @first_row.to_s
-    @coordinates << @first_coord
-    @first_coord
-  end
+    first_row, first_column = find_coordinate_index(first_coord)
 
-  def next_coordinates
-    first_coordinate
-    directions = Directions.new(@first_coord)
+    directions = Directions.new(first_coord)
     x_direction = directions.x.sample
-    y_direction = directions.y.sample
+    y_direction = directions.y.sample if x_direction.zero?
 
-    counter = 1
-    until @coordinates.size == 3
-      if x_direction.zero?
-        next_row = @first_row + (y_direction * counter)
-        next_coordinate = @first_column + next_row.to_s
+    if x_direction.zero?
+      counter = 1
+      until @coordinates.size == 3
+        next_row = @board.rows[first_row + (y_direction * counter)]
+        next_coordinate = @board.columns[first_column] + next_row.to_s
         @coordinates << next_coordinate
-      else
-        index = @board_columns.find_index(@first_column)
-        next_column = @board_columns[index + (x_direction * counter)]
-        next_coordinate = next_column + @first_row.to_s
-        @coordinates << next_coordinate
+        counter += 1
       end
-      counter += 1
+    else
+      counter = 1
+      until @coordinates.size == 3
+        next_column = @board.columns[first_column + (x_direction * counter)]
+        next_coordinate = next_column + @board.rows[first_row].to_s
+        @coordinates << next_coordinate
+        counter += 1
+      end
     end
-    @coordinates
+    return @coordinates
   end
 end

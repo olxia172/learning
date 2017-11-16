@@ -1,12 +1,12 @@
-require "pry"
-
 module GamersChoice
   def gamer_choice
     puts 'What is your choice?'
-    choice = gets.chomp
-    @choice_row, @choice_column = find_coordinate_index(choice)
-    @choice_value = find_coordinate_value(choice)
-    checking_gamer_choice(choice)
+    choice = gets.chomp.upcase
+    unless choice_invalid?(choice)
+      @choice_row, @choice_column = find_coordinate_index(choice)
+      @choice_value = find_coordinate_value(choice)
+      checking_gamer_choice(choice)
+    end
   end
 
   def find_coordinate_value(coordinate) # coordinate jest to "A1"
@@ -38,7 +38,17 @@ module GamersChoice
     else
       puts 'This field is already filled. Try again'
     end
-    gameplay
+      gameplay
+  end
+
+  def choice_invalid?(choice)
+    if choice.empty? || choice.nil?
+      puts 'Try again'
+      gamer_choice
+    elsif choice.length > 3
+      puts 'Try again'
+      gamer_choice
+    end
   end
 
   def missed?(value)
@@ -97,6 +107,23 @@ module GamersChoice
         @board.board.board[row_index][column_index] = @field_options[:empty_selected_field]
       end
     end
-    #sprawdz wartosci na tablicy dla coordinates - jesli wszytskie sa 3 to trafiony zatopiony i fill neighbours
+  end
+
+  def finished_game?
+    hit_fields = []
+    @board.all_ships_coordinates.each do |coord|
+      row_index, column_index = find_coordinate_index(coord)
+      if @board.board.board[row_index][column_index] == @field_options[:filled_selected_field]
+        hit_fields << coord
+      end
+    end
+    if @board.all_ships_coordinates == hit_fields
+      puts 'You win!!! Congratulations!'
+      true
+    end
+  end
+
+  def end_game
+    exit
   end
 end

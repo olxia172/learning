@@ -1,9 +1,6 @@
 require_relative './shipsonboard.rb'
 require_relative './gamers_choice.rb'
 
-# @board.ships[0].coordinates
-
-require "pry"
 class Gameplay < Board
   include GamersChoice
 
@@ -16,11 +13,12 @@ class Gameplay < Board
 
   def gameplay
     board_for_gamer
+    if finished_game?
+      end_game
+    end
     gamer_input = gamer_choice
-    puts "\e[H\e[2J"
     checking_gamer_choice(gamer_input)
-    # sprawdzenie czy wygrał
-    # jeśli
+    puts "\e[H\e[2J"
   end
 
   private
@@ -73,7 +71,7 @@ class Gameplay < Board
     if value == @field_options[:empty_unselected_field]
       @field = ' '
     elsif value == @field_options[:filled_unselected_field]
-      @field = 'O'
+      @field = ' '
     elsif value == @field_options[:empty_selected_field]
       @field = '*'
     elsif value == @field_options[:filled_selected_field]

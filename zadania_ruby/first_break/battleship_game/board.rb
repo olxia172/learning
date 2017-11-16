@@ -1,8 +1,3 @@
-#rescue
-  #binding.pry
-
-require "pry"
-
 class Board
   def initialize
     @columns = ('A'..'J').to_a
