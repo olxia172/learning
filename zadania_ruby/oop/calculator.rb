@@ -65,7 +65,7 @@ class Calculator
   end
 end
 
-calculator = Calculator.new("CASIO")
+calculator = Calculator.new('CASIO')
 
 puts calculator.name # prints CASIO
 
