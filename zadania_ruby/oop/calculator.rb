@@ -1,50 +1,49 @@
 class Calculator
-  attr_reader :name, :history
-  attr_accessor :memory, :result
+  attr_reader :name, :history, :memory, :result
 
   def initialize(name)
     @name = name
     @history = []
-    self.result = nil
-    self.memory = 0
+    @result = nil
+    @memory = 0
   end
 
   def set_memory
-    self.memory = @result
+    @memory = @result
   end
 
   def clear
-    self.result = 0
-    self.memory = 0
+    @result = 0
+    @memory = 0
     add_to_history('clear')
   end
 
   def add(number)
-    self.result = memory + number
+    @result = memory + number
     set_memory
     add_to_history('add', number)
   end
 
   def subtract(number)
-    self.result = memory - number
+    @result = memory - number
     set_memory
     add_to_history('subtract', number)
   end
 
   def multiply(number)
-    self.result = memory * number
+    @result = memory * number
     set_memory
     add_to_history('multiply', number)
   end
 
   def divide(number)
-    self.result = memory / number
+    @result = memory / number
     set_memory
     add_to_history('divide', number)
   end
 
   def change_sign
-    self.result = -result
+    @result = -@result
     add_to_history('change_sign')
   end
 

@@ -26,7 +26,7 @@ class Library
   def generate_card_number(reader)
     letters = ('A'..'Z').to_a
     numbers = (0..9).to_a
-    reader.card_number = letters.sample(3).join + numbers.sample(5).join
+    reader.card_number = letters.sample(5).join + numbers.sample(5).join
   end
 
   def find_book(title_or_author)

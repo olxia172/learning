@@ -5,7 +5,7 @@ require_relative './book.rb'
 require "pry"
 biblioteka = Library.new
 book1 = Book.new('J.K. Rowling', 'Harry Potter i Kamień Filozoficzny')
-book2 = Book.new('M. Mitchel', 'Gone with the Wind')
+book2 = Book.new('M. Mitchel', 'Przeminęło z wiatrem')
 book3 = Book.new('A. Sapkowski', 'Wiedźmin')
 book4 = Book.new('J. Austen', 'Duma i uprzedzenie')
 book5 = Book.new('A. Weir', 'Marsjanin')
