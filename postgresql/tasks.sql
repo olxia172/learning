@@ -55,7 +55,10 @@ HAVING AVG(price) >= 180;
 SELECT name, price FROM products ORDER BY price LIMIT 1;
 
 # 16. Wyświetl nazwę każdego producenta wraz z nazwą oraz ceną najdroższego produktu tego producenta.
-
+SELECT DISTINCT ON (products.manufacturer_id) manufacturers.name, products.name, products.price
+  FROM products
+  INNER JOIN manufacturers ON manufacturers.id = manufacturer_id
+  WHERE products.id IN (SELECT id FROM products ORDER BY manufacturer_id, price DESC);
 
 # 17. Wyświetl nazwy producentów, dla których sklep nie posiada produktów.
 SELECT manufacturers.name
