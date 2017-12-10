@@ -11,4 +11,8 @@ class PostsController < ApplicationController
     @post = Post.create!(params[:post].permit(:title, :content))
     redirect_to action: "index"
   end
+
+  def show
+    @post = Post.find(params[:id])
+  end
 end
