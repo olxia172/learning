@@ -1,1 +1,24 @@
 <h1>My To Do list</h1>
+<h2>Add new task</h2>
+<%= form_for :task, url: tasks_path do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :text %>
+    <%= f.text_field :text %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<table>
+  <tr>
+    <td><strong>Task title</strong></td>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%=task.title%></td>
+    </tr>
+  <% end %>
+</table>
