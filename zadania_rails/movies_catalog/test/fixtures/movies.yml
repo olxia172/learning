@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  release_date: 2017-12-21
+  length: 2017-12-21 16:03:49
+  description: MyText
+  types: MyString
+  director: MyString
+  writer: MyString
+  country: MyString
+
+two:
+  title: MyString
+  release_date: 2017-12-21
+  length: 2017-12-21 16:03:49
+  description: MyText
+  types: MyString
+  director: MyString
+  writer: MyString
+  country: MyString
