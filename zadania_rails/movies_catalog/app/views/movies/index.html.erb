@@ -3,6 +3,7 @@
 <% @movies.each do |movie| %>
   <p>
     <%= movie.title %>
+    <%= link_to "Show", movie_path(movie) %>
   </p>
 <% end %>
 <p>
