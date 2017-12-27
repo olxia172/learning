@@ -1,1 +1,9 @@
 <h1><%= @movie.title %></h1>
+
+<p>
+  <%= link_to "Back to main page", movies_path %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_movie_path(@movie) %>
+</p>
