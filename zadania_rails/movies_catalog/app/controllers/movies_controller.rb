@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   def index
+    @movies = Movie.all
   end
 
   def new
@@ -7,8 +8,8 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params.require(:movie).permit(:title, :release_date,
+    @movie = Movie.new(params.require(:movie).permit(:title, :release_date,
       :length, :description, :types, :director, :writer, :country))
-    @article.save
+    @movie.save
   end
 end
