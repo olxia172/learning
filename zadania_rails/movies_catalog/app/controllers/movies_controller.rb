@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:edit, :update, :destroy]
   def index
     @movies = Movie.all.order(created_at: :desc)
   end
