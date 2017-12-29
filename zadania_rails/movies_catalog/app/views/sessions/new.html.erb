@@ -1,5 +1,4 @@
 <%= form_for(:session, url: login_path) do |f| %>
-  <%= render 'shared/error_messages', target: @user %>
   <%= f.email_field :email %>
   <%= f.password_field :password  %>
   <%= f.submit "Log in" %>
