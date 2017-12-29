@@ -1,6 +1,8 @@
 <h3>Add Your opinion and rate this movie!</h3>
 
 <%= form_for([@movie, @opinion]) do |f| %>
+  <%= render 'shared/error_messages', target: @opinion %>
+
   <div class="form-group">
     <%= f.label :author %>
     <%= f.text_field :author, class: "form-control" %>

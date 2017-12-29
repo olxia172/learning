@@ -6,8 +6,15 @@ class OpinionsController < ApplicationController
     if @opinion.save
       redirect_to movie_path(@movie)
     else
-      redirect_to movies_path
+      render 'movies/show'
     end
+  end
+
+  def destroy
+    @movie = Movie.find(params[:movie_id])
+    @opinion = Opinion.find(params[:id])
+    @opinion.destroy
+    redirect_to movie_path(@movie)
   end
 
 private

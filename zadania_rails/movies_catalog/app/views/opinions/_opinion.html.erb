@@ -12,3 +12,7 @@
   <h4>Opinion</h4>
   <%= opinion.body %>
 </p>
+
+<%= link_to 'Delete', movie_opinion_path(opinion.movie, opinion),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
