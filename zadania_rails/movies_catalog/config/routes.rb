@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'movies#index'
+  root 'main#index'
 
   resources :movies do
     resources :opinions, only: [:create, :destroy]
