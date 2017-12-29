@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   before_action :require_user, only: [:edit, :update, :destroy]
   def index
     @movies = Movie.all.order(created_at: :desc)
+    @movies = Movie.where("title like :searched_title", searched_title: "%#{params[:search]}%") if params[:search].present?
   end
 
   def new
