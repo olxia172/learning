@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @opinion = Opinion.new
   end
 
   def edit

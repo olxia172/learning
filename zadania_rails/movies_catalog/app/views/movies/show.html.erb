@@ -5,3 +5,9 @@
 </p>
 
 <%= render 'authentication', movie: @movie %>
+
+<h1>Comments</h1>
+
+<%= render @movie.opinions %>
+
+<%= render 'opinions/form', opinion: @opinion %>

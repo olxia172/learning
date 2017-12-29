@@ -1,0 +1,22 @@
+<h3>Add Your opinion and rate this movie!</h3>
+
+<%= form_for([@movie, @opinion]) do |f| %>
+  <div class="form-group">
+    <%= f.label :author %>
+    <%= f.text_field :author, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :rate %>
+    <%= f.number_field :rate, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body, 'Your opinion' %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Add opinion', class: "btn btn-default"%>
+  </div>
+<% end %>
