@@ -1,9 +1,5 @@
 <h1><%= @movie.title %></h1>
 
-<p>
-  <%= link_to "Back to main page", movies_path %>
-</p>
-
 <% if current_user %>
   <%= link_to "Edit", edit_movie_path(@movie) %>
   <%= link_to "Delete", movie_path(@movie),

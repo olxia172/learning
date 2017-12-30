@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:edit, :update, :destroy]
+
   def index
     @movies = Movie.all.order(created_at: :desc)
     @movies = Movie.where("title like :searched_title", searched_title: "%#{params[:search]}%") if params[:search].present?
@@ -13,8 +14,9 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(params.require(:movie).permit(:title, :release_date, :length, :description, :types, :director, :writer, :country))
     if @movie.save
-      redirect_to movie_path(@movie)
+      redirect_to movie_path(@movie), notice: 'You successfully added new movie'
     else
+      flash.now.alert = 'Something went wrong. Try again'
       render 'new'
     end
   end
@@ -28,15 +30,16 @@ class MoviesController < ApplicationController
 
   def update
     if @movie.update(movie_params)
-      redirect_to movie_path(@movie)
+      redirect_to movie_path(@movie), notice: 'You successfully updated thi movie'
     else
+      flash.now.alert = 'Something went wrong. Try again'
       render 'edit'
     end
   end
 
   def destroy
     @movie.destroy
-    redirect_to movies_path
+    redirect_to movies_path, notice: 'You successfully deleted a movie'
   end
 
 private

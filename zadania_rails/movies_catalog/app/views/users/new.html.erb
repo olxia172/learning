@@ -1,33 +1,35 @@
 <h1>Sign in</h1>
 
-<%= link_to 'Back', movies_path %>
-
 <%= form_for @user do |f| %>
-  <%= render 'shared/error_messages', target: @user %>
-  <p>
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </p>
 
-  <p>
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </p>
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @user, field_name: :first_name %>
+  </div>
 
-  <p>
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </p>
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
 
-  <p>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </p>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @user, field_name: :email %>
+  </div>
 
-  <p>
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </p>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @user, field_name: :password %>
+  </div>
 
-  <p><%= f.submit %></p>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @user, field_name: :password_confirmation %>
+  </div>
+
+  <div class="form-group"><%= f.submit "Sign in", class: "btn btn-default" %></div>
 <% end %>

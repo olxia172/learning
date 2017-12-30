@@ -13,9 +13,10 @@
     <div class="topnav" id="myTopnav">
       <a class="active" href="/">Home</a>
       <a href="/movies">Movies</a>
+      <a href="/movies/new">Add new movie</a>
 
       <% if current_user %>
-        <b>Welcome, <%= current_user.first_name.capitalize! %>!</b>
+        <b>Welcome, <%= current_user.first_name.capitalize %>!</b>
         <%= link_to "Log out", logout_path, method: "delete", class: "pull-right" %>
       <% else %>
         <%= link_to "Login", login_path, class: "pull-right" %>
@@ -24,12 +25,26 @@
 
       <%= form_tag movies_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
       <%= submit_tag "Search", class: "btn btn-secondary my-2 my-sm-0 btn-search", type: "submit" %>
-      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", type: "text", placeholder: "Search" %>
+      <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2", type: "text", placeholder: "Search title" %>
       <% end %>
     </div>
 
 
     <div class="container">
+      <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <p class="notice"><%= notice %></p>
+      </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+      <div class="alert alert-warning alert-dismissable">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>

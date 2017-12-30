@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :movies do
-    resources :opinions, only: [:create, :destroy]
+    resources :opinions, only: [:create, :destroy, :index]
   end
 
   get 'signup' => 'users#new'

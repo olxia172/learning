@@ -2,41 +2,49 @@
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :title %>
   </div>
 
   <div class="form-group">
     <%= f.label :release_date %>
     <%= f.date_field :release_date, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :release_date %>
   </div>
 
   <div class="form-group">
     <%= f.label :length, 'Length in minutes' %>
     <%= f.number_field :length, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :length %>
   </div>
 
   <div class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :description %>
   </div>
 
   <div class="form-group">
     <%= f.label :types %>
     <%= f.text_field :types, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :types %>
   </div>
 
   <div class="form-group">
     <%= f.label :director %>
     <%= f.text_field :director, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :director %>
   </div>
 
   <div class="form-group">
     <%= f.label :writer %>
     <%= f.text_field :writer, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :writer %>
   </div>
 
   <div class="form-group">
     <%= f.label :country %>
     <%= f.text_field :country, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :country %>
   </div>
 
   <div class="form-group">
