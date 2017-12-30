@@ -1,14 +1,14 @@
 class CreateMovies < ActiveRecord::Migration[5.1]
   def change
     create_table :movies do |t|
-      t.string :title
-      t.date :release_date
-      t.integer :length
-      t.text :description
-      t.string :types
-      t.string :director
-      t.string :writer
-      t.string :country
+      t.string :title, null: false
+      t.date :release_date, null: false
+      t.integer :length, null: false
+      t.text :description, null: false
+      t.string :types, null: false
+      t.string :director, null: false
+      t.string :writer, null: false
+      t.string :country, null: false
 
       t.timestamps
     end

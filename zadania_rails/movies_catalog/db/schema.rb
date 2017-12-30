@@ -10,32 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230170236) do
+ActiveRecord::Schema.define(version: 20171228183940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "movies", force: :cascade do |t|
-    t.string "title"
-    t.date "release_date"
-    t.integer "length"
-    t.text "description"
-    t.string "types"
-    t.string "director"
-    t.string "writer"
-    t.string "country"
+    t.string "title", null: false
+    t.date "release_date", null: false
+    t.integer "length", null: false
+    t.text "description", null: false
+    t.string "types", null: false
+    t.string "director", null: false
+    t.string "writer", null: false
+    t.string "country", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "opinions", force: :cascade do |t|
-    t.bigint "movie_id", null: false
     t.string "author", null: false
     t.integer "rate", null: false
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["movie_id"], name: "index_opinions_on_movie_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,10 +41,9 @@ ActiveRecord::Schema.define(version: 20171230170236) do
     t.string "last_name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
   end
 
-  add_foreign_key "opinions", "movies"
 end
