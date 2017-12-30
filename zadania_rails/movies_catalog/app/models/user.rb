@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true, length: { minimum: 5 }
 
   has_many :opinions
+  has_many :movies
 
   def admin?
     self.admin == true

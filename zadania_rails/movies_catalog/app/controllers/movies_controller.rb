@@ -13,10 +13,11 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new(params.require(:movie).permit(:title, :release_date, :length, :description, :types, :director, :writer, :country))
+    @movie = current_user.movies.new(movie_params)
     if @movie.save
       redirect_to movie_path(@movie), notice: 'You successfully added new movie'
     else
+      Rails.logger.info @movie.errors.full_messages.join(', ')
       flash.now.alert = 'Something went wrong. Try again'
       render 'new'
     end
@@ -33,6 +34,7 @@ class MoviesController < ApplicationController
     if @movie.update(movie_params)
       redirect_to movie_path(@movie), notice: 'You successfully updated thi movie'
     else
+      Rails.logger.info @movie.errors.full_messages.join(', ')
       flash.now.alert = 'Something went wrong. Try again'
       render 'edit'
     end

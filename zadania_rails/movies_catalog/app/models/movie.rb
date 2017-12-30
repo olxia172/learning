@@ -8,6 +8,6 @@ class Movie < ApplicationRecord
   validates :writer, presence: true
   validates :country, presence: true
 
-  has_many :opinions
   belongs_to :user
+  has_many :opinions
 end

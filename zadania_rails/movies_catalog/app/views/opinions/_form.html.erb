@@ -2,11 +2,13 @@
 
 <%= form_for([@movie, @opinion]) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :author %>
-    <%= f.text_field :author, class: "form-control" %>
-    <%= render 'shared/error_messages', object: @opinion, field_name: :author %>
-  </div>
+  <% if user_guest? %>
+    <div class="form-group">
+      <%= f.label :author %>
+      <%= f.text_field :author, class: "form-control" %>
+      <%= render 'shared/error_messages', object: @opinion, field_name: :author %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :rate %>

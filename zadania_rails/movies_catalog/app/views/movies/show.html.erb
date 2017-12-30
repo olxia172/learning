@@ -8,5 +8,7 @@
 <% end %>
 
 <h1>Comments</h1>
-<%= render @movie.opinions %>
+<% if @movie.opinions %>
+  <%= render @movie.opinions %>
+<% end %>
 <%= render 'opinions/form', opinion: @opinion %>
