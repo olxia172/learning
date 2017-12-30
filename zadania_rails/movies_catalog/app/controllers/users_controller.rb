@@ -9,12 +9,16 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: 'You successfully signed in'
+    if find_user_email_in_db(@user.email)
+      redirect_to signup_path, alert: 'Email is already used'
     else
-      flash.now.alert = 'Your email or password is invalid. Try again'
-      render 'users/new'
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to root_path, notice: 'You successfully signed in'
+      else
+        flash.now.alert = 'Something went wrong. Try again'
+        render 'users/new'
+      end
     end
   end
 
@@ -22,5 +26,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def find_user_email_in_db(email)
+    User.where(email: email)
   end
 end

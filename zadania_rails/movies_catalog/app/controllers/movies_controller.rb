@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy] # metoda z application_controller
+  before_action :require_admin, only: [:edit, :update, :destroy] # metoda z application_controller
 
   def index
     @movies = Movie.all.order(created_at: :desc)

@@ -7,5 +7,7 @@ class Movie < ApplicationRecord
   validates :director, presence: true
   validates :writer, presence: true
   validates :country, presence: true
+
   has_many :opinions
+  belongs_to :user
 end
