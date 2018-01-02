@@ -29,6 +29,6 @@ class UsersController < ApplicationController
   end
 
   def find_user_email_in_db(email)
-    User.where(email: email)
+    !User.where(email: email).empty?
   end
 end
