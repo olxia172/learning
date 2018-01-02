@@ -1,29 +1,52 @@
+<div class="movie">
+  <div class="row">
+    <div class="col-md-12 movie-title">
+      <h1><%= @movie.title %></h1>
+    </div>
+  </div>
+
+  <div class="row movie-body">
+    <div class="col-md-2">
+      <%= image_tag(@movie.image_url(:thumb).to_s) %>
+    </div>
+    <div class="col-md-8 movie-show">
+      <h4> <%= @movie.types %> </h4>
+      <p> <%= @movie.description %> </p>
+      <h4><strong>Director:</strong> <%= @movie.director %> </h4>
+      <h4><strong>Writer:</strong> <%= @movie.writer %> </h4>
+
+      <h3><strong>Rate:</strong> <%= avg_rate(@movie) %>/10 </h3>
+    </div>
+
+    <% if current_user && current_user.admin? %>
+    <div class="col-md-1">
+      <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-success btn-lg btn-index" %>
+    </div>
+    <div class="col-md-1">
+      <%= link_to "Delete", movie_path(@movie),
+      method: :delete,
+      data: { confirm: 'Are you sure?' },
+      class: "btn btn-danger btn-lg btn-index"%>
+    </div>
+    <% end %>
+  </div>
+</div>
+
 <div class="row">
-  <div class="col-md-12 movie"><h1><%= @movie.title %></h1></div>
+  <div class="col-md-12 movie-comments-head">
+    <h2>Comments</h2>
+  </div>
 </div>
 <div class="row">
-  <div class="col-md-10 movie"><p> <%= @movie.description %> </p></div>
-
-  <% if current_user && current_user.admin? %>
-  <div class="col-md-1">
-    <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-success btn-lg btn-index" %>
+  <div class="col-md-12">
+    <% if @movie.opinions %>
+    <%= render @movie.opinions %>
+    <% end %>
   </div>
-  <div class="col-md-1">
-    <%= link_to "Delete", movie_path(@movie),
-    method: :delete,
-    data: { confirm: 'Are you sure?' },
-    class: "btn btn-danger btn-lg btn-index"%>
-  </div>
-  <% end %>
 </div>
 
-<%= image_tag(@movie.image_url(:thumb).to_s) %>
-
-
 <div class="row">
-  <h2>Comments</h2>
-  <% if @movie.opinions %>
-  <%= render @movie.opinions %>
-  <% end %>
-  <%= render 'opinions/form', opinion: @opinion %>
+  <div class="col-md-6">
+    <%= render 'opinions/form', opinion: @opinion %>
+  </div>
 </div>

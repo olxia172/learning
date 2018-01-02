@@ -2,19 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.col-md-12 {
+.movie-title h1 {
+  height: 100px;
   background-color: #333;
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
-.movie h1 {
+  font-size: 50px;
   text-align: center;
   color: white;
+  padding: 25px;
 }
 
-.movie p {
-  font-size: 20px;
+.movie-show p {
+  font-size: 24px;
   color: black;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.movie-show h3 {
+  margin-top: 60px;
+}
+
+.movie-comments-head h2 {
+  height: 80px;
+  background-color: #ffdb4d;
+  font-size: 30px;
+  text-align: center;
+  color: black;
+  padding: 25px;
 }
 
 .movie-index {
