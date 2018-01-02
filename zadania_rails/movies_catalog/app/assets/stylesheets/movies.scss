@@ -1,3 +1,27 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.col-md-12 {
+  background-color: #333;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.movie h1 {
+  text-align: center;
+  color: white;
+}
+
+.movie p {
+  font-size: 20px;
+  color: black;
+}
+
+.movie-index {
+  height: 250px;
+  margin: 30px;
+}
+
+.btn-index {
+  margin-top: 30px;
+}

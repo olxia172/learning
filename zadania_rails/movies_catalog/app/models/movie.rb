@@ -9,5 +9,5 @@ class Movie < ApplicationRecord
   validates :country, presence: true
 
   belongs_to :user
-  has_many :opinions
+  has_many :opinions, dependent: :destroy
 end

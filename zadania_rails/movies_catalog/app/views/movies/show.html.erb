@@ -1,14 +1,27 @@
-<h1><%= @movie.title %></h1>
+<div class="row">
+  <div class="col-md-12 movie"><h1><%= @movie.title %></h1></div>
+</div>
+<div class="row">
+  <div class="col-md-10 movie"><p> <%= @movie.description %> </p></div>
 
-<% if current_user && current_user.admin? %>
-  <%= link_to "Edit", edit_movie_path(@movie) %>
-  <%= link_to "Delete", movie_path(@movie),
-              method: :delete,
-              data: { confirm: 'Are you sure?' }%>
-<% end %>
+  <% if current_user && current_user.admin? %>
+  <div class="col-md-1">
+    <%= link_to "Edit", edit_movie_path(@movie), class: "btn btn-success btn-lg btn-index" %>
+  </div>
+  <div class="col-md-1">
+    <%= link_to "Delete", movie_path(@movie),
+    method: :delete,
+    data: { confirm: 'Are you sure?' },
+    class: "btn btn-danger btn-lg btn-index"%>
+  </div>
+  <% end %>
+</div>
 
-<h1>Comments</h1>
-<% if @movie.opinions %>
+
+<div class="row">
+  <h2>Comments</h2>
+  <% if @movie.opinions %>
   <%= render @movie.opinions %>
-<% end %>
-<%= render 'opinions/form', opinion: @opinion %>
+  <% end %>
+  <%= render 'opinions/form', opinion: @opinion %>
+</div>

@@ -1,18 +1,15 @@
-<p>
-  <h4>Author</h4>
-  <%= opinion.author %>
-</p>
-
-<p>
-  <h4>Rate</h4>
-  <%= opinion.rate %>
-</p>
-
-<p>
-  <h4>Opinion</h4>
-  <%= opinion.body %>
-</p>
-
-<%= link_to 'Delete', movie_opinion_path(opinion.movie, opinion),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %>
+<div class="opinion">
+  <h4>Author: <%= opinion_author(opinion) %> </h4>
+  <h5>Rate: <%= opinion.rate %> </h5>
+  <div class="opinion-body">
+    <%= simple_format(opinion.body) %>
+  </div>
+  <div class="opinion-actions">
+    <% if user_admin? %>
+    <%= link_to 'Delete', movie_opinion_path(opinion.movie, opinion),
+    method: :delete,
+    data: { confirm: 'Are you sure?' },
+    class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>
