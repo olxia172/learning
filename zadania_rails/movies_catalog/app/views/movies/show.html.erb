@@ -17,7 +17,7 @@
   <% end %>
 </div>
 
-<%= image_tag(@movie.image_url.to_s) %>
+<%= image_tag(@movie.image_url(:thumb).to_s) %>
 
 
 <div class="row">
