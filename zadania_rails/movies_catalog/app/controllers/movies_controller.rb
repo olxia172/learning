@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all.order(created_at: :desc)
-    @movies = Movie.where("title like :searched_title", searched_title: "%#{params[:search]}%") if params[:search].present?
+    @movies = Movie.where("title like :searched_title", searched_title: "%#{params[:search].capitalize!}%") if params[:search].present?
   end
 
   def new
@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to movie_path(@movie), notice: 'You successfully added new movie'
     else
-      Rails.logger.info @movie.errors.full_messages.join(', ')
+      #Rails.logger.info @movie.errors.full_messages.join(', ')
       flash.now.alert = 'Something went wrong. Try again'
       render 'new'
     end
@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
     if @movie.update(movie_params)
       redirect_to movie_path(@movie), notice: 'You successfully updated thi movie'
     else
-      Rails.logger.info @movie.errors.full_messages.join(', ')
+      #Rails.logger.info @movie.errors.full_messages.join(', ')
       flash.now.alert = 'Something went wrong. Try again'
       render 'edit'
     end
