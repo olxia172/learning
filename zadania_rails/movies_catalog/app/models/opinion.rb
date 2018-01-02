@@ -4,7 +4,7 @@ class Opinion < ApplicationRecord
   validates :body, presence: true, length: { minimum: 5, maximum: 500 }
 
   belongs_to :movie
-  belongs_to :user
+  belongs_to :user, optional: true
 
   def have_user?
     !user.nil?

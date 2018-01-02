@@ -12,6 +12,7 @@ class OpinionsController < ApplicationController
     if @opinion.save
       redirect_to movie_path(@movie), notice: 'You successfully added comment'
     else
+      #Rails.logger.info @opinion.errors.full_messages.join(', ')
       flash.now.alert = 'Something went wrong. Try again'
       @movie.reload # przeladowanie modelu, aby oproznic arraya opinions
       render 'movies/show'
