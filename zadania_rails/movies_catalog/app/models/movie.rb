@@ -8,6 +8,8 @@ class Movie < ApplicationRecord
   validates :writer, presence: true
   validates :country, presence: true
 
+  mount_uploader :image, ImageUploader
+
   belongs_to :user
   has_many :opinions, dependent: :destroy
 end

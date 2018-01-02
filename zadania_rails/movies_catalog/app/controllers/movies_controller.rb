@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
 
   def update
     if @movie.update(movie_params)
-      redirect_to movie_path(@movie), notice: 'You successfully updated thi movie'
+      redirect_to movie_path(@movie), notice: 'You successfully updated this movie'
     else
       #Rails.logger.info @movie.errors.full_messages.join(', ')
       flash.now.alert = 'Something went wrong. Try again'
@@ -52,6 +52,6 @@ private
   end
 
   def movie_params
-    params.require(:movie).permit(:title, :release_date, :length, :description, :types, :director, :writer, :country)
+    params.require(:movie).permit(:title, :release_date, :length, :description, :types, :director, :writer, :country, :image)
   end
 end

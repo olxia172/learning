@@ -48,6 +48,12 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @movie, field_name: :image %>
+  </div>
+
+  <div class="form-group">
     <%= f.submit class: "btn btn-default"%>
   </div>
 <% end %>
