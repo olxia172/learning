@@ -3,4 +3,5 @@ class Review < ApplicationRecord
   validates :body, presence: true, length: { minimum: 50, maximum: 1000 }
 
   belongs_to :movie
+  belongs_to :user
 end
