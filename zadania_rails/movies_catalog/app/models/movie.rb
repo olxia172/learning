@@ -12,4 +12,6 @@ class Movie < ApplicationRecord
 
   belongs_to :user
   has_many :opinions, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+
 end

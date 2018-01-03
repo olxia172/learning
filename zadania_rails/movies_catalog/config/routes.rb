@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :movies do
     resources :opinions, only: [:create, :destroy, :index]
+    resources :reviews
   end
 
   get 'signup' => 'users#new'
