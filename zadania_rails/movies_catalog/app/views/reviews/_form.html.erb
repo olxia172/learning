@@ -1,17 +1,18 @@
-<%= form_with(model: review, local: true) do |form| %>
-  <% if review.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<%= form_for([@movie, @review]) do |f| %>
 
-      <ul>
-      <% review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="form-group">
+    <%= f.label :rate %>
+    <%= f.number_field :rate, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @review, field_name: :rate %>
+  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= f.label :body, 'Your opinion' %>
+    <%= f.text_area :body, class: "form-control" %>
+    <%= render 'shared/error_messages', object: @review, field_name: :body %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-default"%>
   </div>
 <% end %>

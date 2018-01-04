@@ -13,6 +13,7 @@ class User < ApplicationRecord
     self.admin == true
   end
 
-  def author?
+  def author?(review)
+    self.id == review.user_id
   end
 end

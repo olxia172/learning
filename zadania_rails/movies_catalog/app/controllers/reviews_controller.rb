@@ -1,74 +1,63 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  #before_action :find_review, only: [:edit, :update, :destroy]
+  #before_action :find_movie, only: [:index, :new, :create, :destroy]
+  before_action :require_user
 
-  # GET /reviews
-  # GET /reviews.json
   def index
-    @reviews = Review.all
+    @movie = Movie.find(params[:movie_id])
+    redirect_to movie_path(@movie)
   end
 
-  # GET /reviews/1
-  # GET /reviews/1.json
-  def show
-  end
-
-  # GET /reviews/new
   def new
+    @movie = Movie.find(params[:movie_id])
     @review = Review.new
   end
 
-  # GET /reviews/1/edit
-  def edit
-  end
-
-  # POST /reviews
-  # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @movie = Movie.find(params[:movie_id])
+    @review = @movie.reviews.new(review_params)
+    @review.user = current_user
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render :show, status: :created, location: @review }
-      else
-        format.html { render :new }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    if @review.save
+      redirect_to movie_path(@movie), notice: 'You successfully add a review!'
+    else
+      flash.now.alert = 'Something went wrong. Try again'
+      render 'reviews/new'
     end
   end
 
-  # PATCH/PUT /reviews/1
-  # PATCH/PUT /reviews/1.json
+  def edit
+    @review = Review.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, status: :ok, location: @review }
-      else
-        format.html { render :edit }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      redirect_to movie_path(@review.movie), notice: 'You successfully updated this review'
+    else
+      flash.now.alert = 'Something went wrong. Try again'
+      render 'edit'
     end
   end
 
-  # DELETE /reviews/1
-  # DELETE /reviews/1.json
   def destroy
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
     @review.destroy
-    respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to movie_path(@movie), notice: 'You successfully deleted a review'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
+
+    def find_movie
+      @movie = Movie.find(params[:movie_id])
+    end
+
+    def find_review
       @review = Review.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:author, :body)
+      params.require(:review).permit(:rate, :body)
     end
 end

@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-10">
+        <h4><strong>Author:</strong> <%= review.user.email %> </h4>
+      </div>
+      <% if user_author?(review) || user_admin? %>
+      <div class="col-md-1">
+        <%= link_to 'Edit', edit_movie_review_path(movie_id: 999, id: 111), class: "btn btn-success" %>
+      </div>
+      <div class="col-md-1">
+        <%= link_to 'Delete', movie_review_path(review.movie, review), class: "btn btn-danger",
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-2">
+      <h4><strong>Rate:</strong> <%= review.rate %>/10 </h4>
+    </div>
+    <div class="col-md-10">
+      <p> <%= review.body %> </p>
+    </div>
+  </div>
+</div>

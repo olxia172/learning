@@ -10,4 +10,8 @@ module SessionsHelper
   def user_admin?
     user_logged_in? && current_user.admin?
   end
+
+  def user_author?(review)
+    user_logged_in? && current_user.author?(review)
+  end
 end
