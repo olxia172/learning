@@ -6,7 +6,7 @@
       </div>
       <% if user_author?(review) || user_admin? %>
       <div class="col-md-1">
-        <%= link_to 'Edit', edit_movie_review_path(movie_id: 999, id: 111), class: "btn btn-success" %>
+        <%= link_to 'Edit', edit_movie_review_path(movie_id: review.movie_id, id: review.id), class: "btn btn-success" %>
       </div>
       <div class="col-md-1">
         <%= link_to 'Delete', movie_review_path(review.movie, review), class: "btn btn-danger",

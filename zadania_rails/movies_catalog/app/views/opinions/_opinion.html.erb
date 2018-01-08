@@ -1,19 +1,14 @@
-<div class="col-md-3">
-  <div class="opinion">
-    <div class="opinion-header">
-      <h4><strong>Author:</strong> <%= opinion_author(opinion) %> </h4>
-      <h5><strong>Rate:</strong> <%= opinion.rate %>/10 </h5>
-    </div>
-    <div class="opinion-body">
-      <%= simple_format(opinion.body) %>
-    </div>
-    <div class="opinion-actions">
+<div class="panel panel-default opinion">
+  <div class="panel-heading opinion-heading">
+    <h5><strong>Author:</strong> <%= opinion_author(opinion) %> | <strong>Rate:</strong> <%= opinion.rate %>/10 </h5>
+    <div class="btn-opinion">
       <% if user_admin? %>
-      <%= link_to 'Delete', movie_opinion_path(opinion.movie, opinion),
-      method: :delete,
-      data: { confirm: 'Are you sure?' },
-      class: "btn btn-danger" %>
+        <%= link_to 'Delete', movie_opinion_path(opinion.movie, opinion),
+        method: :delete,
+        data: { confirm: 'Are you sure?' },
+        class: "btn btn-danger" %>
       <% end %>
     </div>
   </div>
+  <div class="panel-body opinion-body"><%= simple_format(opinion.body) %></div>
 </div>

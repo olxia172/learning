@@ -14,4 +14,9 @@ class Movie < ApplicationRecord
   has_many :opinions, dependent: :destroy
   has_many :reviews, dependent: :destroy
 
+  attr_reader :youtube_url
+
+  def youtube_url=(new_url)
+    self.youtube_id = YoutubeID.from(new_url)
+  end
 end

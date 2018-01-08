@@ -1,20 +1,17 @@
 class ReviewsController < ApplicationController
-  #before_action :find_review, only: [:edit, :update, :destroy]
-  #before_action :find_movie, only: [:index, :new, :create, :destroy]
+  before_action :find_movie
+  before_action :find_review, only: [:edit, :update, :destroy]
   before_action :require_user
 
   def index
-    @movie = Movie.find(params[:movie_id])
     redirect_to movie_path(@movie)
   end
 
   def new
-    @movie = Movie.find(params[:movie_id])
     @review = Review.new
   end
 
   def create
-    @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.new(review_params)
     @review.user = current_user
 
@@ -27,11 +24,9 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to movie_path(@review.movie), notice: 'You successfully updated this review'
     else
@@ -41,8 +36,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:movie_id])
-    @review = Review.find(params[:id])
     @review.destroy
     redirect_to movie_path(@movie), notice: 'You successfully deleted a review'
   end
