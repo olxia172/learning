@@ -13,6 +13,7 @@ class Movie < ApplicationRecord
   belongs_to :user
   has_many :opinions, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_and_belongs_to_many :genres
 
   attr_reader :youtube_url
 
