@@ -24,9 +24,14 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :types %>
-    <%= f.text_field :types, class: "form-control" %>
-    <%= render 'shared/error_messages', object: @movie, field_name: :types %>
+    <%= f.label :genre_ids, 'Genres' %>
+    <p>
+      <% Genre.all.each do |genre| %>
+      <%= check_box_tag "movie[genre_ids][]", genre.id %>
+      <%= genre.name %><br/>
+      <% end %>
+    </p>
+    <%= render 'shared/error_messages', object: @movie, field_name: :genre_ids %>
   </div>
 
   <div class="form-group">

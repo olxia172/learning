@@ -10,7 +10,7 @@
       <%= image_tag(@movie.image_url(:thumb).to_s) %>
     </div>
     <div class="col-md-8 movie-show">
-      <h4> <%= @movie.types %> </h4>
+      <h4> <%= genres(@movie) %> </h4>
       <p> <%= @movie.description %> </p>
       <h4><strong>Director:</strong> <%= @movie.director %> </h4>
       <h4><strong>Writer:</strong> <%= @movie.writer %> </h4>
@@ -32,17 +32,18 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12 show-head">
-    <h2>Watch trailer</h2>
+<% unless @movie.youtube_url.nil? %>
+  <div class="row">
+    <div class="col-md-12 show-head">
+      <h2>Watch trailer</h2>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12 trailer">
-    <iframe src='https://www.youtube.com/embed/<%= @movie.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+  <div class="row">
+    <div class="col-md-12 trailer">
+      <iframe src='https://www.youtube.com/embed/<%= @movie.youtube_id %>?rel=0&autoplay=<%= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="row">
   <div class="col-md-12 show-head">

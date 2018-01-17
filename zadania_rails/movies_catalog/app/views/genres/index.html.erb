@@ -1,0 +1,6 @@
+<% Genre.all.each do |genre| %>
+  <div class="col-md-4 genre">
+    <h3><%= link_to "#{genre.name}", genre_path(genre) %></h3>
+    <h4>(<%= genre.movies.count %>)</h4>
+  </div>
+<% end %>
